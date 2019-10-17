@@ -3,8 +3,8 @@ from conans import ConanFile, AutoToolsBuildEnvironment
 from conans.client import tools
 
 
-class GccConan(ConanFile):
-    name = "gcc"
+class GccInstallerConan(ConanFile):
+    name = "gcc_installer"
     version = "8.1.0"
     license = "TDB"
     url = "https://gcc.gnu.org/"
