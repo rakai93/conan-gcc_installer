@@ -13,7 +13,10 @@ class GccInstallerConan(ConanFile):
     description = "GCC installer. Useful as a build_requires."
     no_copy_source = True
 
-    build_requires = "automake/1.14.1@bananamonster/build-tools"
+    build_requires = (
+        "automake/1.14.1@bananamonster/build-tools",
+        "autoconf/2.69@bananamonster/build-tools"
+    )
 
     @property
     def source_url(self):
