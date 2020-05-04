@@ -32,7 +32,8 @@ class GccInstallerConan(ConanFile):
         autotools = AutoToolsBuildEnvironment(self)
 
         configure_args = [
-            "--disable-multilib", "--enable-plugin",
+            "--disable-multilib",
+            "--enable-plugin",
             "--enable-languages=c,c++,lto",
             # manually specify libexecdir, otherwise it points to bin/ and creates naming conflicts
             "--libexecdir=${prefix}/libexec"
