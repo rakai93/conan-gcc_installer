@@ -56,4 +56,8 @@ class GccInstallerConan(ConanFile):
         self.env_info.CC = os.path.join(self.package_folder, "bin", "gcc")
 
         # overwrite include path
-        self.cpp_info.includedirs = [os.path.join(self.package_folder, "include", "c++", self.version)]
+        include_root = os.path.join(self.package_folder, "include", "c++", self.version)
+        self.cpp_info.includedirs = [
+            include_root,
+            os.path.join(include_root, f"{self.settings.arch_build}-pc-{str(self.settings.os_build).lower()}-gnu")
+        ]
