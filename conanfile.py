@@ -13,6 +13,10 @@ class GccInstallerConan(ConanFile):
     description = "GCC installer. Useful as a build_requires."
     no_copy_source = True
 
+    build_requires = (
+        "automake_build_aux/1.16.1@bincrafters/stable"
+    )
+
     @property
     def source_url(self):
         return f"https://ftp.gnu.org/gnu/gcc/gcc-{self.version}/gcc-{self.version}.tar.xz"
