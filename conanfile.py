@@ -13,6 +13,8 @@ class GccInstallerConan(ConanFile):
     description = "GCC installer. Useful as a build_requires."
     no_copy_source = True
 
+    exports_sources = "missing_ustat.patch"
+
     build_requires = (
         "automake_build_aux/1.16.1@bincrafters/stable"
     )
@@ -31,6 +33,9 @@ class GccInstallerConan(ConanFile):
 
         self.output.info("Downloading prerequisites")
         self.run(f"cd {self.gcc_folder} && ./contrib/download_prerequisites")
+
+        # run patch already here since this recipe uses no_copy_source
+        tools.patch(patch_file="missing_ustat.patch", base_path=self.gcc_folder)
 
     def build(self):
         autotools = AutoToolsBuildEnvironment(self)
