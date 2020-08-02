@@ -3,20 +3,20 @@ from conans import ConanFile, AutoToolsBuildEnvironment
 from conans.client import tools
 
 
-class GccInstallerConan(ConanFile):
-    name = "gcc_installer"
-    version = "8.1.0"
+class GccConan(ConanFile):
+    name = "gcc"
+    version = "9.3.0"
     license = "TDB"
     url = "https://gcc.gnu.org/"
     settings = "os_build", "arch_build"
     build_policy = "missing"
-    description = "GCC installer. Useful as a build_requires."
+    description = "GCC compiler. Useful as a build_requires."
     no_copy_source = True
 
-    exports_sources = "missing_ustat.patch"
+    #exports_sources = "missing_ustat.patch"
 
     build_requires = (
-        "automake_build_aux/1.16.1@bincrafters/stable"
+        #"automake_build_aux/1.16.1@bincrafters/stable"
     )
 
     @property
@@ -35,7 +35,7 @@ class GccInstallerConan(ConanFile):
         self.run(f"cd {self.gcc_folder} && ./contrib/download_prerequisites")
 
         # run patch already here since this recipe uses no_copy_source
-        tools.patch(patch_file="missing_ustat.patch", base_path=self.gcc_folder)
+        #tools.patch(patch_file="missing_ustat.patch", base_path=self.gcc_folder)
 
     def build(self):
         autotools = AutoToolsBuildEnvironment(self)
