@@ -42,6 +42,8 @@ class GccConan(ConanFile):
 
         configure_args = [
             "--disable-multilib",
+            # build everything statically, so that no libstdc++ needs to be shipped
+            "--disable-shared",
             "--enable-plugin",
             "--enable-languages=c,c++,lto",
             # manually specify libexecdir, otherwise it points to bin/ and creates naming conflicts
@@ -56,7 +58,8 @@ class GccConan(ConanFile):
 
     def package(self):
         autotools = AutoToolsBuildEnvironment(self)
-        autotools.install()
+        # manually call make instead of install to call "install-strip"
+        autotools.make(target="install-strip")
 
     def package_info(self):
         # expose gcc
