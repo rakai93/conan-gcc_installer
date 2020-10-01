@@ -5,7 +5,7 @@ from conans.client import tools
 
 class GccConan(ConanFile):
     name = "gcc"
-    version = "9.3.0"
+    version = "10.2.0"
     license = "TDB"
     url = "https://gcc.gnu.org/"
     settings = "os_build", "arch_build"
